@@ -28,6 +28,8 @@ void tongvienphi(BN *bn);
 void themBenhnhan(BN &bn);
 void nhapDanhsachbenhnhan(BN ds[],int &n);
 void xuatDanhsachbenhnhan(BN ds[],int n);
+void capnhat(BN ds[], int n, int ma);
+void xoahoadon(BN ds[],int n, int ma);
 int main(){
    int chon =0;
    struct benhnhan ds[1000];
@@ -58,14 +60,14 @@ int main(){
         {
             int ma;
             printf ("Nhap vao ma benh nhan can cap nhat: "); scanf ("%d", &ma);  
-            //capnhat(ds,n,ma); 
+            capnhat(ds,n,ma); 
             break;
         }
     case 4:
         {   
             int ma;
             printf ("Nhap vao ma benh nhan can xoa: "); scanf ("%d", &ma);
-            //xoahoadon(ds,n,ma);
+            xoahoadon(ds,n,ma);
             n=n-1;
             break;
         }
@@ -188,4 +190,25 @@ void Menu(){
     printf("                      8. Nhap danh sach hoa don tu file\n");
     printf("                      9. Xuat danh sach hoa don vao file\n");
     printf("=================================================================\n");
+}
+void capnhat(BN ds[], int n, int ma){
+    for(int i=0; i<n; i++){
+        if(ds[i].maso == ma){
+            nhapBenhnhan(ds[i]);
+            tinhsongaynamvien(&ds[i]);
+            tongvienphi(&ds[i]);
+            inDon(ds[i]);
+            break;
+        }
+    }
+}
+void xoahoadon(BN ds[],int n, int ma){
+    for(int i=0; i<n; i++){
+        if(ds[i].maso == ma){
+            for(int j=i; j<n-1; j++){
+                ds[j] = ds[j+1];
+            }
+            break;
+        }
+    }
 }
